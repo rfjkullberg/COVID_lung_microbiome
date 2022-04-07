@@ -179,7 +179,7 @@ composition <- get.otu.melt(ps_gen, filter.zero =F) %>%
 comp_neg <- composition %>%
   group_by(Phylum, Genus, neg_control) %>%
   dplyr::summarize(mean = mean(pctseqs), sd = sd(pctseqs))
-getPalette <- c("#ABDDA4",  "#c76560", "#608fc7", "#FEE08B", "#808080")
+getPalette <- c("#849e1b",  "#9e351b", "#1b849e", "#bea93b", "#808080")
 
 ggplot(comp_neg, aes(x=Genus, y=mean, fill=Phylum))+
   geom_bar(stat = "identity", color = "black", position = position_dodge())+
@@ -314,21 +314,21 @@ cif1 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_n)
 ggcompetingrisks(fit = cif1, multiple_panels = T,
                  xlab = "Days since start of mechanical ventilation",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 60))
 cif2 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_fungal_n)
 ggcompetingrisks(fit = cif2, multiple_panels = T,
                  xlab = "Days since start of mechanical ventilation",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 60))               
 cif3 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_alpha_n)
 ggcompetingrisks(fit = cif3, multiple_panels = T,
                  xlab = "Days since start of mechanical ventilation",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 60))                
  rm(cif1, cif2, cif3)                
@@ -429,21 +429,21 @@ cif1 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_n)
 ggcompetingrisks(fit = cif1, multiple_panels = T,
                  xlab = "Days since first BAL",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 60))
 cif2 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_fungal_n)
 ggcompetingrisks(fit = cif2, multiple_panels = T,
                  xlab = "Days since first BAL",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 60))               
 cif3 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_alpha_n)
 ggcompetingrisks(fit = cif3, multiple_panels = T,
                  xlab = "Days since first BAL",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 60))                
 rm(cif1, cif2, cif3)  
@@ -525,21 +525,21 @@ cif1 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_n)
 ggcompetingrisks(fit = cif1, multiple_panels = T,
                  xlab = "Days since first BAL",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 90))
 cif2 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_fungal_n)
 ggcompetingrisks(fit = cif2, multiple_panels = T,
                  xlab = "Days since first BAL",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 90))               
 cif3 <- cuminc(ftime=time,fstatus=event_n,group = tertiles_alpha_n)
 ggcompetingrisks(fit = cif3, multiple_panels = T,
                  xlab = "Days since first BAL",
                  ylab = "% of patients",
-                 palette = c("#44aa99","#752936"),
+                 palette = c("#1b849e", "#bea93b"),
                  #orientation = "reverse",
                  legend = "top", legend.title="",  xlim = c(0, 90))                
 rm(cif1, cif2, cif3)  
@@ -634,7 +634,7 @@ composition <- get.otu.melt(ps_gen, filter.zero =F) %>%
 comp_vfd <- composition %>%
   group_by(Phylum, Genus, vfd60) %>%
   dplyr::summarize(mean = mean(pctseqs), sd = sd(pctseqs))
-getPalette <- c("#ABDDA4",  "#c76560", "#608fc7", "#FEE08B", "#808080")
+getPalette <- c("#849e1b",  "#9e351b", "#1b849e", "#bea93b", "#808080")
 
 ggplot(comp_vfd, aes(x=Genus, y=mean, fill=Phylum))+
   geom_bar(stat = "identity", color = "black", position = position_dodge())+
