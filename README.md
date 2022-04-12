@@ -28,6 +28,8 @@ ps <- readRDS("~/Documents/COVID ARDS/Data/phyloseq-covid-ards.RDS") # Main phyl
 metadata <- read_excel("~/Documents/COVID ARDS/Data/metadata-covid-ards.xlsx") # Metadata file
 microbialburden <- read_excel("~/Documents/COVID ARDS/Data/microbialburden-covid-ards.xlsx") # Data file with the microbial (bacterial/fungal) burden for all samples (patients and negative controls)
 ```
+For privacy reasons, age and BMI were split into groups in this metadata file. For the analyses provided in the manuscript we used continuous values. 
+
 
 Samples that did not pass quality checks (details provided in the manuscript) were already filtered out using the following code:
 ```
@@ -336,20 +338,20 @@ ggcompetingrisks(fit = cif3, multiple_panels = T,
 
 Univariable and multivariable competing risk regression models (Table E3)
 ```
-summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ age, data=extdat,weight= fgwt)) # univariable; change age for sex, bmi, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
-summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log16s+age+sex+bmi+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal,  
+summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ age_group, data=extdat,weight= fgwt)) # univariable; change age for sex, bmi_group, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
+summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log16s+age_group+sex+bmi_group+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal,  
       data=extdat,weight= fgwt))
-summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log18s+age+sex+bmi+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal,  
+summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log18s+age_group+sex+bmi_group+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal,  
       data=extdat,weight= fgwt))
 rm(extdat, alpha)
 ```
 
 Subdistribution hazard ratios for mortality and cause-specific hazard ratios for extubation and mortality (Table E4)
 ```
-summary(coxph(Surv(time, event) ~ log16s, data = df, id=sample_id)) # change log16s for log18s, age, sex, bmi, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
+summary(coxph(Surv(time, event) ~ log16s, data = df, id=sample_id)) # change log16s for log18s, age_group, sex, bmi_group, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
 
 extdat <- finegray(Surv(time, event) ~ ., data=df, etype="Deceased")
-summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log16s, data=extdat,weight= fgwt)) # change log16s for log18s, age, sex, bmi, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
+summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log16s, data=extdat,weight= fgwt)) # change log16s for log18s, age_group, sex, bmi_group, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
 ```
 
 Two sensitivity analyses were performed to test particular assumptions of above-described models. 
@@ -555,7 +557,7 @@ set.seed(88)
 wunifrac <- phyloseq::distance(p1, method = "wunifrac") 
 adonis2((wunifrac ~ vfd60), by = 'margin', data = m, permutations =9999) 
 #permutest(betadisper(wunifrac, m$vfd60), permutations = 9999)
-adonis2((wunifrac ~ vfd60+age+sex+bmi+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal), by = 'margin', data = m, permutations =9999) 
+adonis2((wunifrac ~ vfd60+age_group+sex+bmi_group+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal), by = 'margin', data = m, permutations =9999) 
 
 adonis2((wunifrac ~ log10(as.numeric(`16s`))), by = 'margin', data = m, permutations =9999) 
 adonis2((wunifrac ~ vfd60 + log10(as.numeric(`16s`))), by = 'margin', data = m, permutations =9999)
