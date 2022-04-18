@@ -338,14 +338,18 @@ ggcompetingrisks(fit = cif3, multiple_panels = T,
 
 Subdistribution hazard ratios for mortality and cause-specific hazard ratios for extubation and mortality (Table E3)
 ```
+extdat <- finegray(Surv(time, event) ~ ., data=df, etype="Extubated")
 summary(coxph(Surv(time, event) ~ log16s, data = df, id=sample_id)) # change log16s for log18s, age_group, sex, bmi_group, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
+rm(extdat)
 
 extdat <- finegray(Surv(time, event) ~ ., data=df, etype="Deceased")
 summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log16s, data=extdat,weight= fgwt)) # change log16s for log18s, age_group, sex, bmi_group, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
+rm(extdat)
 ```
 
 Univariable and multivariable competing risk regression models (Table E4)
 ```
+extdat <- finegray(Surv(time, event) ~ ., data=df, etype="Extubated")
 summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ age_group, data=extdat,weight= fgwt)) # univariable; change age for sex, bmi_group, bal_sofa_total, bal_bact, bal_aspergillosis, antibiotics_before_ICU_admission, antibiotic_exposure_score, antifungal
 summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ log16s+age_group+sex+bmi_group+bal_sofa_total+bal_bact+bal_aspergillosis+antibiotics_before_ICU_admission+antibiotic_exposure_score+antifungal,  
       data=extdat,weight= fgwt))
