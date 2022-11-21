@@ -1,6 +1,6 @@
 # Lung microbiota in COVID-19-related ARDS
 
-This is the code used for the main analyses in "Lung microbiota of critically ill COVID-19 patients are associated with non-resolving acute respiratory distress syndrome" ([doi.org/10.1164/rccm.202202-0274OC](doi.org/10.1164/rccm.202202-0274OC)). For questions: Bob Kullberg at r.f.j.kullberg@amsterdamumc.nl
+This is the code used for the main analyses in "Lung Microbiota of Critically Ill Patients with COVID-19 Are Associated with Nonresolving Acute Respiratory Distress Syndrome" ([doi.org/10.1164/rccm.202202-0274OC](doi.org/10.1164/rccm.202202-0274OC)). For questions: Bob Kullberg at r.f.j.kullberg@amsterdamumc.nl
 
 ## Step 1 - Load libraries
 ```
